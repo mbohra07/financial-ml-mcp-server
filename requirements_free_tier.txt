@@ -12,16 +12,16 @@ numpy>=1.24.0
 pandas>=2.0.0
 scipy>=1.10.0
 
-# Minimal ML dependencies for free tier
+# Minimal ML dependencies for free tier (lightweight only)
 scikit-learn>=1.3.0
-torch>=2.0.0,<2.1.0  # Specific version to avoid large downloads
+# torch>=2.0.0,<2.1.0  # Commented out - too large for free tier
 
-# Essential financial analysis
-statsmodels>=0.14.0
-arch>=6.2.0
+# Essential financial analysis (lightweight versions)
+# statsmodels>=0.14.0  # Commented out - too heavy for free tier
+# arch>=6.2.0  # Commented out - too heavy for free tier
 
-# Technical Analysis (essential only)
-TA-Lib>=0.4.25
+# Technical Analysis (lightweight alternative to TA-Lib)
+# TA-Lib>=0.4.25  # Commented out - causes build issues on free tier
 
 # Utilities
 python-dotenv>=1.0.0

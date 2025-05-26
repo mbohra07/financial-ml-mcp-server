@@ -14,28 +14,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 # Set work directory
 WORKDIR /app
 
-# Install minimal system dependencies for free tier
+# Install minimal system dependencies for free tier (no TA-Lib to avoid build issues)
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    wget \
     curl \
-    pkg-config \
-    libfreetype6-dev \
-    libpng-dev \
-    zlib1g-dev \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
-
-# Install TA-Lib from source (lightweight version)
-RUN wget -q http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz && \
-    tar -xzf ta-lib-0.4.0-src.tar.gz && \
-    cd ta-lib/ && \
-    ./configure --prefix=/usr --disable-static && \
-    make -j2 && \
-    make install && \
-    cd .. && \
-    rm -rf ta-lib ta-lib-0.4.0-src.tar.gz && \
-    ldconfig
 
 # Copy requirements first for better Docker layer caching
 COPY requirements_free_tier.txt requirements.txt
