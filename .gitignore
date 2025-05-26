@@ -1,0 +1,17 @@
+# Virtual environments
+financial_mcp_env/
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store

@@ -1,0 +1,25 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = "python financial_mcp_server_free_tier.py"
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 2
+sleepApplication = false
+region = "us-west1"
+
+[environments.production]
+variables = { 
+  QUANDL_API_KEY = "${{QUANDL_API_KEY}}"
+  NEWSAPI_KEY = "${{NEWSAPI_KEY}}"
+  MODEL_CACHE_PATH = "/app/models/cache"
+  AUTO_RETRAIN = "false"
+  DEFAULT_PREDICTION_HORIZON = "7"
+  DEFAULT_CONFIDENCE_LEVEL = "0.75"
+  MAX_SYMBOLS_PER_REQUEST = "5"
+  FREE_TIER_MODE = "true"
+  MEMORY_LIMIT = "512"
+}
